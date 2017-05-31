@@ -20,8 +20,7 @@ public class MainPage extends MobileAPI {
     @FindBy(id = allowElementId)
     public WebElement allowButton;
 
-
-    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")
+    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Open navigation drawer']")
     public WebElement btnBurger;
     @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.support.v7.widget.LinearLayoutCompat[1]/android.widget.TextView[1]")
     public WebElement btnSearch;
@@ -29,14 +28,21 @@ public class MainPage extends MobileAPI {
     public WebElement txtPageHeading;
     @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.widget.LinearLayout[1]/android.widget.ImageView[1]")
     public WebElement imgPageHeading;
-    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.widget.RelativeLayout[1]/android.widget.TextView[1]")
-    public WebElement txtSectionTopHeadline;
+
     @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[2]/android.support.v4.view.ViewPager[1]/android.widget.RelativeLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.TextView[1]")
     public WebElement txtNewsItemHeadline;
     @FindBy(xpath = "//android.widget.ListView[1]/android.widget.RelativeLayout")
     List<WebElement> mainMenu = new ArrayList<>();
     @FindBy(xpath = "//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.Button")
     List<WebElement> alertTendingNews = new ArrayList<>();
+
+
+    @FindBy(xpath = "//android.widget.TextView[@content-desc='Save']")
+    public WebElement saveButton;
+    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
+    public WebElement backButton;
+    @FindBy(id = "br.com.golmobile.nypost:id/text_overlay")
+    public WebElement txtSectionTopHeadline;
 
     String mainMenuArr[] = {"TOP STORIES", "SAVED ARTICLES", "NEWS", "METRO", "PAGE SIX", "SPORTS", "BUSINESS", "OPINION", "ENTERTAINMENT", "FASHION", "LIVING", "MEDIA", "TECH", "REAL ESTATE", "PHOTOS", "VIDEO", "ABOUT"};
 
@@ -178,7 +184,7 @@ public class MainPage extends MobileAPI {
         } while (elements != null && elements.size() > 0);
     }
 
-    public void goToArticles() {
+    public void clickOnEachCategory() {
         clickAllow();
         getAbout();
         getBusiness();
@@ -189,5 +195,12 @@ public class MainPage extends MobileAPI {
         getOpinion();
         getPageSix();
         getMedia();
+    }
+
+    public void saveTopArticle() {
+        clickAllow();
+        txtSectionTopHeadline.click();
+        saveButton.click();
+        backButton.click();
     }
 }

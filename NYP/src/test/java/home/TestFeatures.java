@@ -17,8 +17,13 @@ public class TestFeatures extends MobileAPI {
     public void home(){
         TestLogger.log("app is launched");
         MainPage mainPage = PageFactory.initElements(ad, MainPage.class);
-        mainPage.goToArticles();
-
+        mainPage.clickOnEachCategory();
     }
 
+    @Test
+    public void saveArticle(){
+        TestLogger.log("app is launched");
+        MainPage mainPage = PageFactory.initElements(ad, MainPage.class);
+        mainPage.saveTopArticle();
+    }
 }
