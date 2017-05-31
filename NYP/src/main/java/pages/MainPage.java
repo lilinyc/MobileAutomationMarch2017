@@ -4,26 +4,32 @@ import base.MobileAPI;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by mrahman on 5/20/17.
  */
 public class MainPage extends MobileAPI {
+    private static final String allowElementId = "com.android.packageinstaller:id/permission_allow_button";
+    @FindBy(id = allowElementId)
+    public WebElement allowButton;
 
-    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.ImageButton[1]")
+
+    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.widget.ImageButton[1]")
     public WebElement btnBurger;
-    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.support.v7.widget.LinearLayoutCompat[1]/android.widget.TextView[1]")
+    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.support.v7.widget.LinearLayoutCompat[1]/android.widget.TextView[1]")
     public WebElement btnSearch;
     @FindBy(xpath = "//android.widget.RelativeLayout[1]/android.widget.TextView[1]")
     public WebElement txtPageHeading;
-    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.LinearLayout[1]/android.widget.ImageView[1]")
+    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.widget.LinearLayout[1]/android.widget.ImageView[1]")
     public WebElement imgPageHeading;
-    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.View[1]/android.widget.RelativeLayout[1]/android.widget.TextView[1]")
+    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.view.ViewGroup[1]/android.widget.RelativeLayout[1]/android.widget.TextView[1]")
     public WebElement txtSectionTopHeadline;
     @FindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.support.v4.widget.DrawerLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[2]/android.support.v4.view.ViewPager[1]/android.widget.RelativeLayout[1]/android.widget.ScrollView[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.TextView[1]")
     public WebElement txtNewsItemHeadline;
@@ -32,7 +38,7 @@ public class MainPage extends MobileAPI {
     @FindBy(xpath = "//android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.Button")
     List<WebElement> alertTendingNews = new ArrayList<>();
 
-    String mainMenuArr[] = {"TOP STORIES","SAVED ARTICLES","NEWS","METRO","PAGE SIX","SPORTS","BUSINESS","OPINION","ENTERTAINMENT","FASHION","LIVING","MEDIA","TECH","REAL ESTATE","PHOTOS","VIDEO","ABOUT"};
+    String mainMenuArr[] = {"TOP STORIES", "SAVED ARTICLES", "NEWS", "METRO", "PAGE SIX", "SPORTS", "BUSINESS", "OPINION", "ENTERTAINMENT", "FASHION", "LIVING", "MEDIA", "TECH", "REAL ESTATE", "PHOTOS", "VIDEO", "ABOUT"};
 
     public void setAlertTendingNews(String condition) {
         if (alertTendingNews.get(0).isDisplayed()) {
@@ -47,102 +53,133 @@ public class MainPage extends MobileAPI {
         }
     }
 
-    public void getMenu(){
+    public void getMenu() {
         btnBurger.click();
     }
 
-    public void getTopStories(){
+    public void getTopStories() {
         getMenu();
         scrollAndClickByName(mainMenuArr[0]);
         //Assert.assertTrue(txtPageHeading.getText().contains("TOP STORIES"));
     }
-    public void getSavedArticles(){
+
+    public void getSavedArticles() {
         getMenu();
         scrollAndClickByName(mainMenuArr[1]);
         //Assert.assertTrue(txtPageHeading.getText().contains("SAVED ARTICLES"));
     }
-    public void getNews(){
+
+    public void getNews() {
         getMenu();
         scrollAndClickByName(mainMenuArr[2]);
-       // Assert.assertTrue(txtPageHeading.getText().contains("NEWS"));
+        // Assert.assertTrue(txtPageHeading.getText().contains("NEWS"));
     }
-    public void getMetro(){
+
+    public void getMetro() {
         getMenu();
         scrollAndClickByName(mainMenuArr[3]);
         //Assert.assertTrue(txtPageHeading.getText().contains("METRO"));
     }
-    public void getPageSix(){
+
+    public void getPageSix() {
         getMenu();
         scrollAndClickByName(mainMenuArr[4]);
-        Assert.assertTrue(imgPageHeading.getSize().width==229);
+        //Assert.assertTrue(imgPageHeading.getSize().width == 229);
         //Assert.assertTrue(imgPageHeading.getSize().height==54);
     }
-    public void getSports(){
+
+    public void getSports() {
         getMenu();
         scrollAndClickByName(mainMenuArr[5]);
         //Assert.assertTrue(txtPageHeading.getText().contains("SPORTS"));
     }
-    public void getBusiness(){
+
+    public void getBusiness() {
         getMenu();
         scrollAndClickByName(mainMenuArr[6]);
         //Assert.assertTrue(txtPageHeading.getText().contains("BUSINESS"));
     }
-    public void getOpinion(){
+
+    public void getOpinion() {
         getMenu();
         scrollAndClickByName(mainMenuArr[7]);
         //Assert.assertTrue(txtPageHeading.getText().contains("OPINION"));
     }
-    public void getEntertainment(){
+
+    public void getEntertainment() {
         getMenu();
         scrollAndClickByName(mainMenuArr[8]);
         Assert.assertTrue(txtPageHeading.getText().contains("ENTERTAINMENT"));
     }
-    public void getFashion(){
+
+    public void getFashion() {
         getMenu();
         scrollAndClickByName(mainMenuArr[9]);
         //Assert.assertTrue(txtPageHeading.getText().contains("FASHION"));
     }
-    public void getLiving(){
+
+    public void getLiving() {
         getMenu();
         scrollAndClickByName(mainMenuArr[10]);
         Assert.assertTrue(txtPageHeading.getText().contains("LIVING"));
     }
-    public void getMedia(){
+
+    public void getMedia() {
         getMenu();
         scrollAndClickByName(mainMenuArr[11]);
         //Assert.assertTrue(txtPageHeading.getText().contains("MEDIA"));
     }
-    public void getTech(){
+
+    public void getTech() {
         getMenu();
         scrollAndClickByName(mainMenuArr[12]);
         //Assert.assertTrue(txtPageHeading.getText().contains("TECH"));
     }
-    public void getRealEstate(){
+
+    public void getRealEstate() {
         getMenu();
         scrollAndClickByName(mainMenuArr[13]);
         Assert.assertTrue(txtPageHeading.getText().contains("REAL ESTATE"));
     }
-    public void getPhotots(){
+
+    public void getPhotots() {
         getMenu();
         scrollAndClickByName(mainMenuArr[14]);
         Assert.assertTrue(txtPageHeading.getText().contains("PHOTOS"));
     }
-    public void getVideo(){
+
+    public void getVideo() {
         getMenu();
         scrollAndClickByName(mainMenuArr[15]);
         Assert.assertTrue(txtPageHeading.getText().contains("VIDEO"));
     }
+
     public void getAbout() {
         getMenu();
         scrollAndClickByName(mainMenuArr[16]);
         //Assert.assertTrue(txtPageHeading.getText().contains("ABOUT"));
     }
-    public void scrollToElement(AppiumDriver driver, String text){
+
+    public void scrollToElement(AppiumDriver driver, String text) {
         MobileElement we = (MobileElement) driver.findElementByXPath(text);
         driver.scrollTo(we.getText());
     }
 
-    public void goToArticles(){
+    private void clickAllow() {
+        List<WebElement> elements;
+        do {
+
+            elements = ad.findElements(By.id(allowElementId));
+            if (elements != null && elements.size() > 0) {
+                elements.forEach(element -> element.click());
+                sleepFor(1);
+            }
+
+        } while (elements != null && elements.size() > 0);
+    }
+
+    public void goToArticles() {
+        clickAllow();
         getAbout();
         getBusiness();
         getEntertainment();
